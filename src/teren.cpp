@@ -78,6 +78,11 @@ Point Board::food_create()
     m_teren[m_food.x][m_food.y] = FOOD;
 }
 
+bool Board::ending_move(int move){
+    if (move==Board::BODY || move==Board::BOARDER || move==Board::COMPLETE)
+        return true;
+    return false;
+}
 void Board::print_teren()
 {
     //clear screen
@@ -97,6 +102,17 @@ void Board::print_teren()
     }
 }
 
+void Board::intro(){
+    std::cout << "\x1B[2J\x1B[H";
+    std::cout << std::setw(X_DIMENTION/2+1) << "READY?" << std::endl;
+    for (int i = 3 ; i > 0 ; i--){
+        std::cout << std::setw(X_DIMENTION/2+1) << i << "\r";
+        std::cout << std::flush;
+        sleep(1);
+    }
+    std::cout << std::endl << std::setw(X_DIMENTION/2+1) << "GO!!" << std::endl;
+    sleep(1);
+}
 int Board::play(int direction)
 {
     int move = snake_bite(direction);

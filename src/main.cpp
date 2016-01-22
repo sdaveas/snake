@@ -73,24 +73,6 @@ int sleep_from_to_for( int start_time, int end_time, int time_quantom){
     return start_time;
 }
 
-bool ending_move(int move){
-    if (move==Board::BODY || move==Board::BOARDER || move==Board::COMPLETE)
-        return true;
-    return false;
-}
-
-void intro(){
-    std::cout << "\x1B[2J\x1B[H";
-    std::cout << std::setw(X_DIMENTION/2+1) << "READY?" << std::endl;
-    for (int i = 3 ; i > 0 ; i--){
-        std::cout << std::setw(X_DIMENTION/2+1) << i << "\r";
-        std::cout << std::flush;
-        sleep(1);
-    }
-    std::cout << std::endl << std::setw(X_DIMENTION/2+1) << "GO!!" << std::endl;
-//    std::cout << std::flush;
-    sleep(1);
-}
 
 int play(){
     Board board;
