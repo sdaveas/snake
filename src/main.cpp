@@ -54,7 +54,7 @@ int kbhit(void)
 }
 
 
-int read_move( Board &board, char move ){
+int read_move( char move ){
     switch(move){
     case 'd': return Board::UP;
     case 'a': return Board::DOWN;
@@ -87,7 +87,7 @@ int play(){
 
     while(1){
         do{
-            move_outcome = board.play(read_move(board, move));
+            move_outcome = board.play(read_move(move));
             remaining_sleeping_time = sleep_from_to_for(curr_sleeping_time, max_sleeping_time, sleeping_quantom);
             sleep_from_to_for(remaining_sleeping_time, max_sleeping_time, sleeping_quantom);
             sleeping_quantom = sleeping_quantom - sleeping_quantom*0.001;
