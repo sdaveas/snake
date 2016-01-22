@@ -68,7 +68,7 @@ int Board::snake_bite(int direction)
     }
 }
 
-Point Board::food_create()
+void Board::food_create()
 {
     do{
         m_food.x = rand()%X_DIMENTION + 1;
