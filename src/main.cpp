@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include "teren.h"
 
+// get a character without expecting enter after.
 char getch() {
         char buf = 0;
         struct termios old = {0};
@@ -26,6 +27,7 @@ char getch() {
         return (buf);
 }
 
+// this function is called only if a key is hitten.
 int kbhit(void)
 {
   struct termios oldt, newt;
@@ -53,6 +55,7 @@ int kbhit(void)
   return 0;
 }
 
+// translates the keyboard input to snake movement.
 int read_move( char move ){
     switch(move){
     case 'd': return Board::UP;
@@ -63,6 +66,7 @@ int read_move( char move ){
     return -1;
 }
 
+// sleeps for a certain time. If sleep was not complete, returns the remaining sleep time.
 int sleep_from_to_for( int start_time, int end_time, int time_quantom){
     for( ; start_time < end_time ; start_time++){
         if (kbhit())
@@ -72,6 +76,7 @@ int sleep_from_to_for( int start_time, int end_time, int time_quantom){
     return start_time;
 }
 
+// plays a round
 int play(){
     Board board;
     int move_outcome;
