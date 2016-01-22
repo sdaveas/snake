@@ -76,11 +76,15 @@ public:
      
      ////Food functions
      // put a food point inside the teren
-     Point food_create();
+     void food_create();
      
      //// Generic fuctions
      // prints out the Board
+     bool ending_move(int move);
+
      void print_teren();
+
+     void intro();
 
      int play(int direction);
 };
