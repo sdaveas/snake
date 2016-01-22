@@ -81,11 +81,8 @@ public:
      
      //// Generic fuctions
      bool ending_move(int move);
-
      void print_teren();
-
      void intro();
-
      int play(int direction);
 };
 

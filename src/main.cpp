@@ -53,7 +53,6 @@ int kbhit(void)
   return 0;
 }
 
-
 int read_move( char move ){
     switch(move){
     case 'd': return Board::UP;
@@ -72,7 +71,6 @@ int sleep_from_to_for( int start_time, int end_time, int time_quantom){
     }
     return start_time;
 }
-
 
 int play(){
     Board board;

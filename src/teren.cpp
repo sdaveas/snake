@@ -115,6 +115,7 @@ void Board::intro(){
     std::cout << std::endl << std::setw(X_DIMENTION/2+1) << "GO!!" << std::endl;
     sleep(1);
 }
+
 int Board::play(int direction)
 {
     int move = snake_bite(direction);
