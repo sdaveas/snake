@@ -82,7 +82,7 @@ int play(){
     int max_sleeping_time = 100;
     int sleeping_quantom = 10000;
 
-    intro();
+    board.intro();
 
     while(1){
         do{
@@ -90,8 +90,8 @@ int play(){
             remaining_sleeping_time = sleep_from_to_for(curr_sleeping_time, max_sleeping_time, sleeping_quantom);
             sleep_from_to_for(remaining_sleeping_time, max_sleeping_time, sleeping_quantom);
             sleeping_quantom = sleeping_quantom - sleeping_quantom*0.001;
-        }while(!kbhit() && !ending_move(move_outcome));
-        if (ending_move(move_outcome)) break;
+        }while(!kbhit() && !board.ending_move(move_outcome));
+        if (board.ending_move(move_outcome)) break;
         std::cin >> move;
     }
     printf("outcome:%d\n", move_outcome);
