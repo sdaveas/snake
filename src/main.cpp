@@ -61,6 +61,7 @@ int read_move( Board &board, char move ){
     case 'w': return Board::LEFT;
     case 's': return Board::RIGHT;
     }
+    return -1;
 }
 
 int sleep_from_to_for( int start_time, int end_time, int time_quantom){
