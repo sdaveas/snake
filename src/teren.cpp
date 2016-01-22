@@ -66,6 +66,7 @@ int Board::snake_bite(int direction)
         m_snake.pop_back();
         return EMPTY;
     }
+    return -1;
 }
 
 void Board::food_create()
