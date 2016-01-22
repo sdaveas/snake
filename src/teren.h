@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <unistd.h>
+#include <iomanip>
 
 #define X_DIMENTION 8
 #define Y_DIMENTION 8
