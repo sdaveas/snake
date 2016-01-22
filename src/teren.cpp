@@ -84,6 +84,7 @@ bool Board::ending_move(int move){
         return true;
     return false;
 }
+
 void Board::print_teren()
 {
     //clear screen
