@@ -1,11 +1,10 @@
 #include <iostream>
 #include <stdio.h>
 #include <sys/ioctl.h>
-#include "teren.h"
 #include <unistd.h>
 #include <termios.h>
 #include <fcntl.h>
-#include <iomanip>
+#include "teren.h"
 
 char getch() {
         char buf = 0;
