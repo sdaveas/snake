@@ -62,16 +62,10 @@ int read_move( char move ){
     case 'a': return Board::DOWN;
     case 'w': return Board::LEFT;
     case 's': return Board::RIGHT;
-    // arrow was pressed
-    case '^':
-        // skip the [[
-        getch(); getch();
-        switch(getch()) {
-        case 'A': return Board::LEFT;
-        case 'B': return Board::RIGHT;
-        case 'C': return Board::UP;
-        case 'D': return Board::DOWN;
-        }
+    case 'A': return Board::LEFT;
+    case 'B': return Board::RIGHT;
+    case 'C': return Board::UP;
+    case 'D': return Board::DOWN;
     }
     return -1;
 }
