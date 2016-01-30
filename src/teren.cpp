@@ -1,19 +1,29 @@
 #include "teren.h"
 
 // Constructor
-Board::Board()
+Board::Board(int dimension_x,int dimension_y)
 {
+    m_dimension_x=dimension_x;
+    m_dimension_y=dimension_y;
+
     // create teren
-    for( int x = 0 ; x < X_DIMENTION + 2 ; x++){
-        for( int y= 0 ; y < Y_DIMENTION + 2 ; y++){
-            if ( (x == 0 || x == X_DIMENTION + 1) || (y == 0 || y == Y_DIMENTION + 1) )
+    m_teren = new char*[m_dimension_y+2];
+    for (int i=0; i<m_dimension_y+2; i++){
+        m_teren[i]=new char[m_dimension_x+2];
+    }
+
+    // fill teren
+    for( int x = 0 ; x < m_dimension_x + 2 ; x++){
+        for( int y= 0 ; y < m_dimension_y + 2 ; y++){
+            if ( (x == 0 || x == m_dimension_x + 1) || (y == 0 || y == m_dimension_y + 1) )
                 m_teren[x][y] = BOARDER;
             else
                 m_teren[x][y] = EMPTY;
         }
     }
+
     // create snake and put in the teren
-    Point startingPoint( X_DIMENTION/2 , Y_DIMENTION/2 );
+    Point startingPoint( m_dimension_x/2 , m_dimension_y/2 );
     m_snake.push_front(startingPoint);
     // put snake inside board
     m_teren[startingPoint.x][startingPoint.y] = HEAD;
@@ -24,7 +34,13 @@ Board::Board()
 }
 
 Board::~Board()
-{}
+{
+    // create teren
+    for (int i=0; i<m_dimension_y+2; i++){
+        delete[] m_teren[i];
+    }
+    delete[] m_teren;
+}
 
 int Board::snake_bite(int direction)
 {
@@ -49,7 +65,7 @@ int Board::snake_bite(int direction)
     }
     // new position is food.
     if (m_teren[newHead.x][newHead.y] == FOOD){
-        if (m_snake.size() == X_DIMENTION * Y_DIMENTION - 1)
+        if (m_snake.size() == (m_dimension_x * m_dimension_y) - 1)
             return COMPLETE;
         m_teren[oldHead.x][oldHead.y] = BODY;
         m_teren[newHead.x][newHead.y] = HEAD;
@@ -72,8 +88,8 @@ int Board::snake_bite(int direction)
 void Board::food_create()
 {
     do{
-        m_food.x = rand()%X_DIMENTION + 1;
-        m_food.y = rand()%Y_DIMENTION + 1;
+        m_food.x = rand()%m_dimension_x + 1;
+        m_food.y = rand()%m_dimension_y + 1;
     }while( m_teren[m_food.x][m_food.y] != EMPTY );
 
     m_teren[m_food.x][m_food.y] = FOOD;
@@ -90,8 +106,8 @@ void Board::print_teren()
     //clear screen
     std::cout << "\x1B[2J\x1B[H";
 
-    for (int x = 0  ; x < X_DIMENTION + 2 ; x++){
-        for (int y = 0  ; y < Y_DIMENTION + 2 ; y++){
+    for (int x = 0  ; x < m_dimension_x + 2 ; x++){
+        for (int y = 0  ; y < m_dimension_y + 2 ; y++){
             switch(m_teren[x][y]){
             case BOARDER: std::cout << "x"; break;
             case HEAD: std::cout << "o"; break;
@@ -106,13 +122,13 @@ void Board::print_teren()
 
 void Board::intro(){
     std::cout << "\x1B[2J\x1B[H";
-    std::cout << std::setw(X_DIMENTION/2+1) << "READY?" << std::endl;
+    std::cout << std::setw(m_dimension_x/2+1) << "READY?" << std::endl;
     for (int i = 3 ; i > 0 ; i--){
-        std::cout << std::setw(X_DIMENTION/2+1) << i << "\r";
+        std::cout << std::setw(m_dimension_x/2+1) << i << "\r";
         std::cout << std::flush;
         sleep(1);
     }
-    std::cout << std::endl << std::setw(X_DIMENTION/2+1) << "GO!!" << std::endl;
+    std::cout << std::endl << std::setw(m_dimension_x/2+1) << "GO!!" << std::endl;
     sleep(1);
 }
 

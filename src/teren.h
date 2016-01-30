@@ -7,9 +7,6 @@
 #include <unistd.h>
 #include <iomanip>
 
-#define X_DIMENTION 8
-#define Y_DIMENTION 8
-
 struct Point {
 
     int x;
@@ -53,9 +50,11 @@ typedef std::list<Point> Snake;
 typedef Point Food;
 
 private:
-     char m_teren[X_DIMENTION+2][Y_DIMENTION+2];
+     char** m_teren;
      Snake m_snake;
      Food m_food;
+     int m_dimension_x;
+     int m_dimension_y;
 
 public:
      enum {
@@ -67,7 +66,7 @@ public:
      }directionValues;
 
      // Constructor
-     Board();
+     Board(int dimension_x, int dimension_y);
      // Destructor
      ~Board();
      

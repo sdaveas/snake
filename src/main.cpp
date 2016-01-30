@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <termios.h>
@@ -81,8 +82,9 @@ int sleep_from_to_for( int start_time, int end_time, int time_quantom){
 }
 
 // plays a round
-int play(){
-    Board board;
+int play(int x_dimension, int y_dimension){
+
+    Board board(x_dimension, y_dimension);
     int move_outcome;
     char move = Board::UP;
     int curr_sleeping_time = 0;
@@ -108,13 +110,25 @@ int play(){
 
 int main( int argc, char* argv[]){
 
+    int dimension_x=8;
+    int dimension_y=8;
+
+    if (argc == 3){
+        dimension_x=atoi(argv[1]);
+        dimension_y=atoi(argv[2]);
+    }
+    else if(argc == 2){
+        dimension_x=atoi(argv[1]);
+        dimension_y=dimension_x;
+    }
+
     srand(time(0));
 
     int result;
     char answer;
 
     do{
-        result = play();
+        result = play(dimension_x, dimension_y);
         std::cout << "wanna play again? [y/n]" << std::endl;
         answer = getch();
     }while(answer != 'n' );
