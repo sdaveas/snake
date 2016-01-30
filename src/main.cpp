@@ -89,8 +89,8 @@ int play(int x_dimension, int y_dimension){
     char move = Board::UP;
     int curr_sleeping_time = 0;
     int remaining_sleeping_time = 0;
-    int max_sleeping_time = 100;
-    int sleeping_quantom = 10000;
+    int max_sleeping_time = 10;
+    int sleeping_quantom = 100000;
 
     board.intro();
 
