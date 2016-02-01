@@ -1,0 +1,6 @@
+build/*
+snake.creator
+snake.creator.user
+snake.files
+snake.includes
+*.~
