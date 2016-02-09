@@ -57,6 +57,25 @@ int Board::snake_bite(int direction)
     }
     // new position is a wall.
     if (m_teren[newHead.x][newHead.y] == BOARDER){
+        if (m_mode==EASY){
+            // x-axis boarder
+            if (newHead.x == m_dimension_x+1){
+                newHead.x-=m_dimension_x;
+            }
+            else if(newHead.x==0){
+                newHead.x+=m_dimension_x;
+            }
+            // y-axis boarder
+            if (newHead.y == m_dimension_y+1){
+                newHead.y-=m_dimension_y;
+            }
+            else if(newHead.y==0){
+                newHead.y+=m_dimension_y;
+            }
+        }
+        else if (m_mode==HARD){
+            return BOARDER;
+        }
     }
     // new position is body.
     if (m_teren[newHead.x][newHead.y] == BODY && (newHead != oldTail || m_snake.size() == 2)){
