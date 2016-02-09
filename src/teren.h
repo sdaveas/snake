@@ -55,7 +55,7 @@ private:
      Food m_food;
      int m_dimension_x;
      int m_dimension_y;
-
+     int m_mode;
 public:
      enum {
          EMPTY=0, HEAD=1, BODY=2, FOOD=3, BOARDER=4, COMPLETE=5,
@@ -65,8 +65,12 @@ public:
          UP=0, DOWN=1, LEFT=2, RIGHT=3,
      }directionValues;
 
+     enum {
+         EASY=0, HARD=1,
+     }mode;
+
      // Constructor
-     Board(int dimension_x, int dimension_y);
+     Board(int dimension_x, int dimension_y, int mode);
      // Destructor
      ~Board();
      
@@ -83,6 +87,7 @@ public:
      void print_teren();
      void intro();
      int play(int direction);
+     void setMode(int mode);
 };
 
 #endif // _TEREN_H_
