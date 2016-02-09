@@ -68,7 +68,7 @@ int read_move( char move ){
     case 'C': return Board::UP;
     case 'D': return Board::DOWN;
     }
-    return -1;
+    return move;
 }
 
 // sleeps for a certain time. If sleep was not complete, returns the remaining sleep time.
