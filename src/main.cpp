@@ -108,6 +108,14 @@ int play(int x_dimension, int y_dimension){
     return move_outcome;
 }
 
+void print_outcome(int result){
+    switch(result){
+        case Board::BODY: std::cout<<"You bit yourself!"<< std::endl; return;
+        case Board::BOARDER: std::cout<<"You crashed at the boarders!"<<std::endl; return;
+        case Board::COMPLETE: std::cout<<"Congratulations!!"<<std::endl; return;
+    }
+}
+
 int main( int argc, char* argv[]){
 
     int dimension_x=8;
