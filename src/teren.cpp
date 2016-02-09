@@ -1,11 +1,11 @@
 #include "teren.h"
 
 // Constructor
-Board::Board(int dimension_x,int dimension_y)
+Board::Board(int dimension_x,int dimension_y, int mode)
 {
     m_dimension_x=dimension_x;
     m_dimension_y=dimension_y;
-
+    setMode(mode);
     // create teren
     m_teren = new char*[m_dimension_y+2];
     for (int i=0; i<m_dimension_y+2; i++){
@@ -57,7 +57,6 @@ int Board::snake_bite(int direction)
     }
     // new position is a wall.
     if (m_teren[newHead.x][newHead.y] == BOARDER){
-        return BOARDER;
     }
     // new position is body.
     if (m_teren[newHead.x][newHead.y] == BODY && (newHead != oldTail || m_snake.size() == 2)){
@@ -65,7 +64,7 @@ int Board::snake_bite(int direction)
     }
     // new position is food.
     if (m_teren[newHead.x][newHead.y] == FOOD){
-        if (m_snake.size() == (m_dimension_x * m_dimension_y) - 1)
+        if (m_snake.size() ==(m_dimension_x * m_dimension_y) - 1)
             return COMPLETE;
         m_teren[oldHead.x][oldHead.y] = BODY;
         m_teren[newHead.x][newHead.y] = HEAD;
@@ -137,6 +136,14 @@ int Board::play(int direction)
     int move = snake_bite(direction);
     print_teren();
     return move;
+}
+
+void Board::setMode(int mode)
+{
+    if (mode == EASY)
+        m_mode=EASY;
+    else
+        m_mode=HARD;
 }
 
 

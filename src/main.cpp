@@ -82,9 +82,9 @@ int sleep_from_to_for( int start_time, int end_time, int time_quantom){
 }
 
 // plays a round
-int play(int x_dimension, int y_dimension){
+int play(int x_dimension, int y_dimension, int mode){
 
-    Board board(x_dimension, y_dimension);
+    Board board(x_dimension, y_dimension, mode);
     int move_outcome;
     char move = Board::UP;
     int curr_sleeping_time = 0;
@@ -104,8 +104,19 @@ int play(int x_dimension, int y_dimension){
         if (board.ending_move(move_outcome)) break;
         std::cin >> move;
     }
-    printf("outcome:%d\n", move_outcome);
     return move_outcome;
+}
+
+int pickMode(){
+    std::cout<<"Pick mode: (1=EASY, 2=HARD)" << std::endl;
+    char answer;
+    do{
+        answer=getch();
+    }while (answer != '1' && answer!='2');
+    if (answer=='1')
+        return Board::EASY;
+    else
+        return Board::HARD;
 }
 
 void print_outcome(int result){
@@ -120,6 +131,9 @@ int main( int argc, char* argv[]){
 
     int dimension_x=8;
     int dimension_y=8;
+    int mode;
+
+    mode=pickMode();
 
     if (argc == 3){
         dimension_x=atoi(argv[1]);
@@ -136,7 +150,8 @@ int main( int argc, char* argv[]){
     char answer;
 
     do{
-        result = play(dimension_x, dimension_y);
+        result = play(dimension_x, dimension_y, mode);
+        print_outcome(result);
         std::cout << "wanna play again? [y/n]" << std::endl;
         answer = getch();
     }while(answer != 'n' );
