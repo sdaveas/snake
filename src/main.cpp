@@ -7,6 +7,9 @@
 #include <fcntl.h>
 #include "teren.h"
 
+// TODO
+// fix head when the next box is the last part of tail
+
 // get a character without expecting enter after.
 char getch() {
         char buf = 0;
