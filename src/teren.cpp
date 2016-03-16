@@ -15,7 +15,9 @@ Board::Board(int dimension_x,int dimension_y, int mode)
     // fill teren
     for( int x = 0 ; x < m_dimension_x + 2 ; x++){
         for( int y= 0 ; y < m_dimension_y + 2 ; y++){
-            if ( (x == 0 || x == m_dimension_x + 1) || (y == 0 || y == m_dimension_y + 1) )
+            if ( (x == 0 || x == m_dimension_x + 1) || (y == 0 || y == m_dimension_y + 1) ||
+                 (m_mode == EXPERT && y==m_dimension_y/2+1 && (x <= m_dimension_x/4 || x+m_dimension_x/4>m_dimension_x) ) ||
+                 (m_mode == EXPERT && x==m_dimension_x/2+1 && (y <= m_dimension_y/4 || y+m_dimension_y/4>m_dimension_y) ) )
                 m_teren[x][y] = BOARDER;
             else
                 m_teren[x][y] = EMPTY;
@@ -23,7 +25,7 @@ Board::Board(int dimension_x,int dimension_y, int mode)
     }
 
     // create snake and put in the teren
-    Point startingPoint( m_dimension_x/2 , m_dimension_y/2 );
+    Point startingPoint( m_dimension_x/2, m_dimension_y/2);
     m_snake.push_front(startingPoint);
     // put snake inside board
     m_teren[startingPoint.x][startingPoint.y] = HEAD;
@@ -73,7 +75,7 @@ int Board::snake_bite(int direction)
                 newHead.y+=m_dimension_y;
             }
         }
-        else if (m_mode==HARD){
+        else if (m_mode==HARD || m_mode==EXPERT){
             return BOARDER;
         }
     }
@@ -83,7 +85,8 @@ int Board::snake_bite(int direction)
     }
     // new position is food.
     if (m_teren[newHead.x][newHead.y] == FOOD){
-        if (m_snake.size() ==(m_dimension_x * m_dimension_y) - 1)
+        if ((m_mode==EASY||m_mode==HARD) && (m_snake.size() ==(m_dimension_x * m_dimension_y) - 1) ||
+             m_mode==EXPERT && m_snake.size() == (m_dimension_x*m_dimension_y)-2*(m_dimension_x/4)-2*(m_dimension_y)/4)
             return COMPLETE;
         m_teren[oldHead.x][oldHead.y] = BODY;
         m_teren[newHead.x][newHead.y] = HEAD;
@@ -92,7 +95,7 @@ int Board::snake_bite(int direction)
         return FOOD;
     }
     // new position is empty area.
-    if (m_teren[newHead.x][newHead.y] == EMPTY || (newHead == oldTail && m_snake.size() != 2)){
+    if (m_teren[newHead.x][newHead.y] == EMPTY){
         m_teren[oldHead.x][oldHead.y] = BODY;
         m_teren[newHead.x][newHead.y] = HEAD;
         m_snake.push_front(newHead);
@@ -100,6 +103,15 @@ int Board::snake_bite(int direction)
         m_snake.pop_back();
         return EMPTY;
     }
+
+    if (newHead == oldTail){
+        m_snake.pop_back();
+        m_teren[oldHead.x][oldHead.y] = EMPTY;
+        m_snake.push_front(newHead);
+        m_teren[newHead.x][newHead.y]=HEAD;
+        m_teren[oldHead.x][oldHead.y]=BODY;
+    }
+
     return -1;
 }
 
@@ -161,8 +173,10 @@ void Board::setMode(int mode)
 {
     if (mode == EASY)
         m_mode=EASY;
-    else
+    else if (mode == HARD)
         m_mode=HARD;
+    else if (mode == EXPERT)
+        m_mode=EXPERT;
 }
 
 

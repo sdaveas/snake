@@ -66,7 +66,7 @@ public:
      }directionValues;
 
      enum {
-         EASY=0, HARD=1,
+         EASY=0, HARD=1, EXPERT=2,
      }mode;
 
      // Constructor

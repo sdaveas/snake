@@ -95,7 +95,7 @@ int play(int x_dimension, int y_dimension, int mode){
     int max_sleeping_time = 10;
     int sleeping_quantom = 100000;
 
-    board.intro();
+//    board.intro();
 
     while(1){
         do{
@@ -111,15 +111,17 @@ int play(int x_dimension, int y_dimension, int mode){
 }
 
 int pickMode(){
-    std::cout<<"Pick mode: (1=EASY, 2=HARD)" << std::endl;
+    std::cout<<"Pick mode: (1=EASY, 2=HARD, 3=EXPERT)" << std::endl;
     char answer;
     do{
         answer=getch();
-    }while (answer != '1' && answer!='2');
-    if (answer=='1')
-        return Board::EASY;
-    else
-        return Board::HARD;
+    }while (answer != '1' && answer!='2' && answer!='3');
+    switch (answer){
+    case '1' : return Board::EASY;
+    case '2' : return Board::HARD;
+    case '3' : return Board::EXPERT;
+    }
+    return Board::EASY;
 }
 
 void print_outcome(int result){
@@ -132,8 +134,8 @@ void print_outcome(int result){
 
 int main( int argc, char* argv[]){
 
-    int dimension_x=8;
-    int dimension_y=8;
+    int dimension_x=9;
+    int dimension_y=9;
     int mode;
 
     mode=pickMode();
