@@ -132,7 +132,7 @@ void print_outcome(int result){
     }
 }
 
-int main( int argc, char* argv[]){
+int main(int argc, char* argv[]){
 
     int dimension_x=9;
     int dimension_y=9;
