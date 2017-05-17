@@ -10,7 +10,7 @@ from repository directory, run:
 $ mkdir build && cd build && g++ ../src/*.cpp -o snake
 
 # Run #
-from build directory, run
+from build directory, run:
 
 $ ./snake [dimension]
 
