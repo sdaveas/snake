@@ -16,5 +16,7 @@ $ ./snake [dimension]
 
 # Instructions #
 Easy: Snake can pass through the walls.
+
 Hard: Snake crushes on the walls.
+
 Expert: Additional obstacles introduced.
