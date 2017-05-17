@@ -15,8 +15,8 @@ from build directory, run
 $ ./snake [dimension]
 
 # Instructions #
-Easy: Snake can pass through the walls.
+* Easy: Snake can pass through the walls.
 
-Hard: Snake crushes on the walls.
+* Hard: Snake crushes on the walls.
 
-Expert: Additional obstacles introduced.
+* Expert: Additional obstacles introduced.
