@@ -62,10 +62,17 @@ int kbhit(void)
 // translates the keyboard input to snake movement.
 int read_move( char move ){
     switch(move){
+    // Vi-style movement
+    case 'l': return Board::UP;
+    case 'h': return Board::DOWN;
+    case 'k': return Board::LEFT;
+    case 'j': return Board::RIGHT;
+    // WASD-syle movement
     case 'd': return Board::UP;
     case 'a': return Board::DOWN;
     case 'w': return Board::LEFT;
     case 's': return Board::RIGHT;
+    // Arrow-syle movement
     case 'A': return Board::LEFT;
     case 'B': return Board::RIGHT;
     case 'C': return Board::UP;
