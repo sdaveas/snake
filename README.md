@@ -1,5 +1,5 @@
 # README #
-Minimal terminal snake game.
+The terminal snake game you always wanted
 
 # Clone repo #
 `$ git clone https://bitbucket.org/br3gan/snake.git`
