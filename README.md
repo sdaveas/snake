@@ -1,5 +1,7 @@
 # README #
-The terminal snake game you always wanted
+The terminal snake you always needed
+
+![](snake.gif)
 
 # Clone repo #
 `$ git clone https://bitbucket.org/br3gan/snake.git`
