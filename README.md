@@ -4,7 +4,7 @@ The terminal snake you always needed
 ![](snake.gif)
 
 # Clone repo #
-`$ git clone https://bitbucket.org/br3gan/snake.git`
+`$ git clone https://github.com/sdaveas/snake.git`
 
 # Build #
 from repository directory, run:
